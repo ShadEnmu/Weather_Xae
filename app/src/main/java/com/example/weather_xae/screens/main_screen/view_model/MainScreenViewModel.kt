@@ -5,24 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weather_xae.data.repository.WeatherRepositoryImpl
 import dagger.hilt.android.scopes.ViewModelScoped
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ViewModelScoped
 class MainScreenViewModel @Inject constructor(
     private val weatherRepositoryImpl: WeatherRepositoryImpl
-): ViewModel() {
+) : ViewModel() {
     private val state = mutableStateOf(WeatherState())
     var _state = state
 
     fun onEvent(event: WeatherEvent) {
-        when(event) {
+        when (event) {
             WeatherEvent.OnWeatherRequest -> {
                 viewModelScope.launch {
                     state.value = state.value.copy(
-                        currentWeather = weatherRepositoryImpl.getCurrentWeather()
+                        currentWeather = weatherRepositoryImpl.getCurrentWeather(state.value.currentPosition!!)
                     )
                 }
             }

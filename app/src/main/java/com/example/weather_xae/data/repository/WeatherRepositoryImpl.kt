@@ -8,5 +8,5 @@ import javax.inject.Inject
 class WeatherRepositoryImpl @Inject constructor(
     private val weatherService: WeatherService
 ) : WeatherRepository {
-    override suspend fun getCurrentWeather(): Weather = weatherService.getCurrentWeather()
+    override suspend fun getCurrentWeather(city: String): Weather = weatherService.getCurrentWeather(city)
 }
