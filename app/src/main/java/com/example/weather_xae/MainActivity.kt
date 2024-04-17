@@ -13,7 +13,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.weather_xae.screens.main_screen.view.MainScreen
 import com.example.weather_xae.ui.theme.Weather_XaeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var permLauncher: ActivityResultLauncher<Array<String>>
     override fun onCreate(savedInstanceState: Bundle?) {
